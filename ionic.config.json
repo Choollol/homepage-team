@@ -1,0 +1,7 @@
+{
+  "name": "homepage-team",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
