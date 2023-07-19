@@ -1,0 +1,7 @@
+{
+  "name": "Kyros Homepage Draft",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
