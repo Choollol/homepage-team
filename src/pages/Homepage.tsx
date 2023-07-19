@@ -1,9 +1,8 @@
 import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
-import './Homepage.css';
+import './Tab1.css';
 
-const Homepage: React.FC = () =>
-{
+const Tab1: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -23,4 +22,4 @@ const Homepage: React.FC = () =>
   );
 };
 
-export default Homepage;
+export default Tab1;
