@@ -1,6 +1,16 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
 import ExploreContainer from '../components/ExploreContainer';
 import './Homepage.css';
+import React from 'react';
+
+function LinkButton({ url, name })
+{
+  function HandleClick()
+  {
+    window.open(url, '_blank');
+  }
+  return <IonButton onClick={HandleClick}>{name}</IonButton>
+}
 
 const Tab1: React.FC = () =>
 {
@@ -18,6 +28,8 @@ const Tab1: React.FC = () =>
           </IonToolbar>
         </IonHeader>
         <ExploreContainer name="Homepage" />
+        <LinkButton url="https://www.kyros.ai/sprint" name="Journal" />
+        <LinkButton url="https://www.kyros.ai/discussion-forum" name="Forum" />
       </IonContent>
     </IonPage>
   );
