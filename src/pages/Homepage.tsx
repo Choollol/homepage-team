@@ -1,21 +1,30 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol } from '@ionic/react';
-import ExploreContainer from '../components/ExploreContainer';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonIcon, IonItem, IonImg } from '@ionic/react';
 import './Homepage.css';
 import React from 'react';
 
-function LinkButton({ url, name })
+function LinkButton({ url, name, iconURL })
 {
   function HandleClick()
   {
     window.open(url, '_blank');
   }
-  return <IonButton onClick={HandleClick}>{name}</IonButton>
+  function AddNewline()
+  {
+    name = '\n' + name;
+  }
+  AddNewline();
+  return <IonButton onClick={HandleClick}>
+    <div>
+      <IonImg src={iconURL} style={{ width: "60px", height: "60px" }}></IonImg>
+      {name}
+    </div>
+  </IonButton>
 }
 
 const Tab1: React.FC = () =>
 {
   return (
-    <IonPage>
+    <IonPage color="white">
       <IonHeader>
         <IonToolbar>
           <IonTitle>Homepage</IonTitle>
@@ -27,9 +36,20 @@ const Tab1: React.FC = () =>
             <IonTitle size="large">Homepage</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <ExploreContainer name="Homepage" />
-        <LinkButton url="https://www.kyros.ai/sprint" name="Journal" />
-        <LinkButton url="https://www.kyros.ai/discussion-forum" name="Forum" />
+        <IonGrid>
+          <IonRow class="ion-justify-items-center">
+            <IonCol>
+              <LinkButton url="https://www.kyros.ai/home" name="Home" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
+              <LinkButton url="https://www.kyros.ai/sprint" name="Events" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
+            </IonCol>
+          </IonRow>
+          <IonRow class="ion-justify-items-center">
+            <IonCol>
+              <LinkButton url="https://www.kyros.ai/discussion-forum" name="Forum" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
+              <LinkButton url="https://www.kyros.ai/conversations" name="Chats" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
+            </IonCol>
+          </IonRow>
+        </IonGrid>
       </IonContent>
     </IonPage>
   );
