@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonIcon, IonItem, IonImg } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonIcon, IonItem, IonImg, IonList, IonListHeader, IonLabel } from '@ionic/react';
 import './Homepage.css';
 import React from 'react';
 
@@ -31,11 +31,13 @@ const Tab1: React.FC = () =>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Homepage</IonTitle>
           </IonToolbar>
         </IonHeader>
+
         <IonGrid>
           <IonRow class="ion-justify-items-center">
             <IonCol>
@@ -50,6 +52,28 @@ const Tab1: React.FC = () =>
             </IonCol>
           </IonRow>
         </IonGrid>
+
+        <IonList inset>
+          <IonListHeader>
+            <IonLabel>Upcoming</IonLabel>
+          </IonListHeader>
+
+          <IonItem>
+            <IonLabel>
+              <h1>Event Name</h1>
+              <p>Description</p>
+            </IonLabel>
+          </IonItem>
+
+          <IonItem>
+            <IonLabel>
+              <h1>Event Name</h1>
+              <p>Description</p>
+            </IonLabel>
+          </IonItem>
+
+        </IonList>
+
       </IonContent>
     </IonPage>
   );
