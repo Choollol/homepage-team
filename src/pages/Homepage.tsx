@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonIcon, IonItem, IonImg } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel } from '@ionic/react';
 import './Homepage.css';
 import React from 'react';
 
@@ -8,11 +8,6 @@ function LinkButton({ url, name, iconURL })
   {
     window.open(url, '_blank');
   }
-  function AddNewline()
-  {
-    name = '\n' + name;
-  }
-  AddNewline();
   return <IonButton onClick={HandleClick} size="large">
     <div>
       <IonImg src={iconURL} style={{ width: "100px", height: "100px" }} ></IonImg>
@@ -39,7 +34,7 @@ const Tab1: React.FC = () =>
         <IonGrid>
           <IonRow class="ion-justify-items-center">
             <IonCol>
-              <LinkButton url="https://www.kyros.ai/home" name="Home" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
+              <LinkButton url="https://www.kyros.ai/home" name="Home" iconURL="assets/img/kyros_logo_transparent.png" />
               <LinkButton url="https://www.kyros.ai/sprint" name="Events" iconURL="https://www.kyros.ai/static/media/StudentEvents.fe28d47b.svg" />
             </IonCol>
           </IonRow>
@@ -50,6 +45,26 @@ const Tab1: React.FC = () =>
             </IonCol>
           </IonRow>
         </IonGrid>
+        <IonList inset>
+          <IonListHeader>
+            <IonLabel>Upcoming</IonLabel>
+          </IonListHeader>
+
+          <IonItem>
+            <IonLabel>
+              <h1>Event Name</h1>
+              <p>Description</p>
+            </IonLabel>
+          </IonItem>
+
+          <IonItem>
+            <IonLabel>
+              <h1>Event Name</h1>
+              <p>Description</p>
+            </IonLabel>
+          </IonItem>
+
+        </IonList>
       </IonContent>
     </IonPage>
   );
