@@ -26,11 +26,13 @@ const Tab1: React.FC = () =>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
+
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Homepage</IonTitle>
           </IonToolbar>
         </IonHeader>
+
         <IonGrid>
           <IonRow class="ion-justify-items-center">
             <IonCol>
