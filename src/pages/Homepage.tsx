@@ -13,9 +13,9 @@ function LinkButton({ url, name, iconURL })
     name = '\n' + name;
   }
   AddNewline();
-  return <IonButton onClick={HandleClick}>
+  return <IonButton onClick={HandleClick} size="large">
     <div>
-      <IonImg src={iconURL} style={{ width: "60px", height: "60px" }}></IonImg>
+      <IonImg src={iconURL} style={{ width: "100px", height: "100px" }} ></IonImg>
       {name}
     </div>
   </IonButton>
@@ -24,7 +24,7 @@ function LinkButton({ url, name, iconURL })
 const Tab1: React.FC = () =>
 {
   return (
-    <IonPage color="white">
+    <IonPage>
       <IonHeader>
         <IonToolbar>
           <IonTitle>Homepage</IonTitle>
@@ -42,13 +42,13 @@ const Tab1: React.FC = () =>
           <IonRow class="ion-justify-items-center">
             <IonCol>
               <LinkButton url="https://www.kyros.ai/home" name="Home" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
-              <LinkButton url="https://www.kyros.ai/sprint" name="Events" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
+              <LinkButton url="https://www.kyros.ai/sprint" name="Events" iconURL="https://www.kyros.ai/static/media/StudentEvents.fe28d47b.svg" />
             </IonCol>
           </IonRow>
           <IonRow class="ion-justify-items-center">
             <IonCol>
-              <LinkButton url="https://www.kyros.ai/discussion-forum" name="Forum" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
-              <LinkButton url="https://www.kyros.ai/conversations" name="Chats" iconURL="https://csa-program.kyros.ai/dark-logo192.png" />
+              <LinkButton url="https://www.kyros.ai/discussion-forum" name="Forum" iconURL="https://www.kyros.ai/static/media/StudentForum.e3687d6d.svg" />
+              <LinkButton url="https://www.kyros.ai/conversations" name="Chats" iconURL="https://www.kyros.ai/static/media/StudentChats.05bce75c.svg" />
             </IonCol>
           </IonRow>
         </IonGrid>

@@ -4,4 +4,15 @@ ion-col {
 
 ion-button {
     --background: #14202c;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 10px;
+}
+
+ion-img {
+    padding-bottom: 5px;
+}
+
+ion-content {
+    --background: white;
 }
