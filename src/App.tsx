@@ -13,10 +13,11 @@ import
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
+import { ellipse, square, triangle, home, create, calendar } from 'ionicons/icons';
 import Homepage from './pages/Homepage';
 import Journal from './pages/Journal';
 import Planner from './pages/Planner';
+import './pages/customcolors.css'
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -33,7 +34,7 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-
+import './theme/variables.css';
 /* Theme variables */
 import './theme/variables.css';
 
@@ -57,17 +58,17 @@ const App: React.FC = () => (
             <Redirect to="/Homepage" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
+        <IonTabBar slot="bottom" color="favorite">
           <IonTabButton tab="Homepage" href="/Homepage">
-            <IonIcon aria-hidden="true" icon={triangle} />
+            <IonIcon aria-hidden="true" icon={home} />
             <IonLabel>Homepage</IonLabel>
           </IonTabButton>
           <IonTabButton tab="Journal" href="/Journal">
-            <IonIcon aria-hidden="true" icon={ellipse} />
+            <IonIcon aria-hidden="true" icon={create} />
             <IonLabel>Journal</IonLabel>
           </IonTabButton>
           <IonTabButton tab="Planner" href="/Planner">
-            <IonIcon aria-hidden="true" icon={square} />
+            <IonIcon aria-hidden="true" icon={calendar} />
             <IonLabel>Planner</IonLabel>
           </IonTabButton>
         </IonTabBar>

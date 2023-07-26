@@ -1,5 +1,6 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText } from '@ionic/react';
 import './Homepage.css';
+import './customcolors.css'
 import React from 'react';
 
 function LinkButton({ url, name, iconURL })
@@ -21,11 +22,11 @@ const Tab1: React.FC = () =>
   return (
     <IonPage>
       <IonHeader>
-        <IonToolbar>
+        <IonToolbar color="favorite">
           <IonTitle>Homepage</IonTitle>
         </IonToolbar>
       </IonHeader>
-      <IonContent fullscreen>
+      <IonContent color="dark" fullscreen>
 
         <IonHeader collapse="condense">
           <IonToolbar>
@@ -33,7 +34,7 @@ const Tab1: React.FC = () =>
           </IonToolbar>
         </IonHeader>
 
-        <IonGrid>
+        <IonGrid color="favorite">
           <IonRow class="ion-justify-items-center">
             <IonCol>
               <LinkButton url="https://www.kyros.ai/home" name="Home" iconURL="assets/img/kyros_logo_transparent.png" />
@@ -48,21 +49,29 @@ const Tab1: React.FC = () =>
           </IonRow>
         </IonGrid>
         <IonList inset>
-          <IonListHeader>
-            <IonLabel>Upcoming</IonLabel>
+          <IonListHeader color="dark">
+            <IonLabel>
+              <IonText color="favorite">
+                <h1>Upcoming</h1>
+              </IonText>
+            </IonLabel>
           </IonListHeader>
 
-          <IonItem>
+          <IonItem color="boldgreen">
             <IonLabel>
               <h1>Event Name</h1>
-              <p>Description</p>
+              <IonText color="favorite">
+                <p>Description</p>
+              </IonText>
             </IonLabel>
           </IonItem>
 
-          <IonItem>
+          <IonItem color="boldgreen">
             <IonLabel>
               <h1>Event Name</h1>
-              <p>Description</p>
+              <IonText color="favorite">
+                <p>Description</p>
+              </IonText>
             </IonLabel>
           </IonItem>
 
