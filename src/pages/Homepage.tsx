@@ -17,6 +17,18 @@ function LinkButton({ url, name, iconURL })
   </IonButton>
 }
 
+function UpcomingEvent({ name, description })
+{
+  return <IonItem color="boldgreen">
+    <IonLabel>
+      <h1>{name}</h1>
+      <IonText color="favorite">
+        <p>{description}</p>
+      </IonText>
+    </IonLabel>
+  </IonItem>
+}
+
 const Tab1: React.FC = () =>
 {
   return (
@@ -34,6 +46,7 @@ const Tab1: React.FC = () =>
           </IonToolbar>
         </IonHeader>
 
+        { /* Hyperlink Buttons */}
         <IonGrid color="favorite">
           <IonRow class="ion-justify-items-center">
             <IonCol>
@@ -48,6 +61,8 @@ const Tab1: React.FC = () =>
             </IonCol>
           </IonRow>
         </IonGrid>
+
+        { /* Upcoming Events List */}
         <IonList inset>
           <IonListHeader color="dark">
             <IonLabel>
@@ -57,23 +72,9 @@ const Tab1: React.FC = () =>
             </IonLabel>
           </IonListHeader>
 
-          <IonItem color="boldgreen">
-            <IonLabel>
-              <h1>Event Name</h1>
-              <IonText color="favorite">
-                <p>Description</p>
-              </IonText>
-            </IonLabel>
-          </IonItem>
-
-          <IonItem color="boldgreen">
-            <IonLabel>
-              <h1>Event Name</h1>
-              <IonText color="favorite">
-                <p>Description</p>
-              </IonText>
-            </IonLabel>
-          </IonItem>
+          <UpcomingEvent name="Sample Event 1" description="aaaaaa" />
+          <UpcomingEvent name="Sample Event 2" description="aaaaaa" />
+          <UpcomingEvent name="Sample Event 3" description="aaaaaa" />
 
         </IonList>
       </IonContent>
