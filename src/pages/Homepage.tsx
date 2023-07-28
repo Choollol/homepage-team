@@ -96,9 +96,10 @@ const Homepage: React.FC = () =>
           {eventList.map(event =>
           {
             console.log(event);
-            return <IonItem color="boldgreen" key={event.name}>
+            return <IonItem color="boldgreen" key={event.id}>
               <IonLabel>
                 <h1>{event.name}</h1>
+                <p>{event.description}</p>
               </IonLabel>
             </IonItem>
           })}
