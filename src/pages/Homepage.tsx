@@ -17,38 +17,30 @@ function LinkButton({ url, name, iconURL })
     </div>
   </IonButton>
 }
-
-function UpcomingEvent({ name, description })
+function AddEvent(eventList, setEventList)
 {
-  return <IonItem color="boldgreen">
-    <IonLabel>
-      <h1>{name}</h1>
-      {/*<IonText color="favorite">
-        <p>{description}</p>
-      </IonText>*/}
-    </IonLabel>
-  </IonItem>
-}
-function CreateUpcomingEvent(name, description)
-{
-  return <UpcomingEvent name={name} description={description} />
-}
-function RenderUpcomingEventList(upcomingEventList)
-{
-  const upcomingEventArray = [CreateUpcomingEvent(upcomingEventList[0].name, upcomingEventList[0].description)];
-  if (upcomingEventList.length == 0)
+  setEventList(() =>
   {
-    upcomingEventArray.pop();
-    upcomingEventArray.push(CreateUpcomingEvent("No Upcoming Events", ""));
-  }
-  else
-  {
-    for (let i = 0; i < upcomingEventList.length; i++)
+    let newID;
+    if (eventList.length == 0)
     {
-      upcomingEventArray.push(CreateUpcomingEvent(upcomingEventList[i].name, upcomingEventList[i].description));
+      newID = 0;
     }
-  }
-  return upcomingEventArray;
+    else
+    {
+      newID = eventList[eventList.length - 1].id + 1;
+    }
+    return [...eventList, {
+      id: newID, name: "Sample Event " + newID, description: "test"
+    }]
+  });
+}
+function DeleteEvent(eventList, setEventList)
+{
+  setEventList(() =>
+  {
+    return eventList.slice(1, eventList.length);
+  });
 }
 
 const Homepage: React.FC = () =>
@@ -56,31 +48,6 @@ const Homepage: React.FC = () =>
   const initialList: { id: number, name: string, description: string }[] = [];
   const [eventList, setEventList] = useState(initialList);
 
-  function AddEvent()
-  {
-    setEventList(() =>
-    {
-      let newID;
-      if (eventList.length == 0)
-      {
-        newID = 0;
-      }
-      else
-      {
-        newID = eventList[eventList.length - 1].id + 1;
-      }
-      return [...eventList, {
-        id: newID, name: "Sample Event " + newID, description: "test"
-      }]
-    });
-  }
-  function DeleteEvent()
-  {
-    setEventList(() =>
-    {
-      return eventList.slice(1, eventList.length);
-    });
-  }
   return (
     <IonPage>
       <IonHeader>
@@ -112,8 +79,8 @@ const Homepage: React.FC = () =>
           </IonRow>
         </IonGrid>
 
-        <IonButton onClick={AddEvent}>Add Event</IonButton>
-        <IonButton onClick={DeleteEvent}>Delete Event</IonButton>
+        <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
+        <IonButton onClick={() => { DeleteEvent(eventList, setEventList) }}>Delete Event</IonButton>
 
         { /* Upcoming Events List */}
         <IonList inset>
