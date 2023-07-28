@@ -101,6 +101,10 @@ const Homepage: React.FC = () =>
                 <h1>{event.name}</h1>
                 <p>{event.description}</p>
               </IonLabel>
+              <IonButton onClick={() => {
+                setEventList(eventList.filter(e => e.id !== event.id))
+              }} color="favorite">Delete Event
+              </IonButton>
             </IonItem>
           })}
 
