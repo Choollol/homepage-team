@@ -84,7 +84,6 @@ const Homepage: React.FC = () =>
         </IonGrid>
 
         <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
-        <IonButton onClick={() => { DeleteLatestEvent(eventList, setEventList) }}>Delete Event</IonButton>
 
         { /* Upcoming Events List */}
         <IonList inset>
