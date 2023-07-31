@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover, IonReorder, IonReorderGroup, ItemReorderEventDetail } from '@ionic/react';
 import './Homepage.css';
 import './customcolors.css'
 import React from 'react';
@@ -35,25 +35,38 @@ function AddEvent(eventList, setEventList)
     }]
   });
 }
-function DeleteEvent(eventList, setEventList)
+function DeleteLatestEvent(eventList, setEventList)
 {
   setEventList(() =>
   {
     return eventList.slice(1, eventList.length);
   });
 }
-function NoUpcomingEvents({hasEvents}) {
-  if (hasEvents) {
-    return null;
+function DeleteEvent(eventList, setEventList, eventID)
+{
+  setEventList(eventList.filter(e => e.id !== eventID));
+}
+function NoUpcomingEvents({ hasEvents })
+{
+  if (hasEvents)
+  {
+    return;
   }
-  else {
-    return <IonItem color="favorite">
+  return <IonItem color="favorite">
     <IonLabel>
       <h1>No Upcoming Events</h1>
       <p>Event list is empty</p>
     </IonLabel>
   </IonItem>
-  }
+}
+function handleReorder(event: CustomEvent<ItemReorderEventDetail>) {
+  // The `from` and `to` properties contain the index of the item
+  // when the drag started and ended, respectively
+  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
+  // Finish the reorder and position the item in the DOM based on
+  // where the gesture ended. This method can also be called directly
+  // by the reorder group
+  event.detail.complete();
 }
 const Homepage: React.FC = () =>
 {
@@ -74,7 +87,7 @@ const Homepage: React.FC = () =>
             <IonTitle size="large">Homepage</IonTitle>
           </IonToolbar>
         </IonHeader>
-
+        
         { /* Hyperlink Buttons */}
         <IonGrid color="favorite">
           <IonRow class="ion-justify-items-center">
@@ -92,7 +105,6 @@ const Homepage: React.FC = () =>
         </IonGrid>
 
         <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
-        <IonButton onClick={() => { DeleteEvent(eventList, setEventList) }}>Delete Event</IonButton>
 
         { /* Upcoming Events List */}
         <IonList inset>
@@ -103,22 +115,27 @@ const Homepage: React.FC = () =>
               </IonText>
             </IonLabel>
           </IonListHeader>
-          <NoUpcomingEvents hasEvents={eventList.length > 0}/>
+
+          <NoUpcomingEvents hasEvents={eventList.length > 0} />
+          <IonReorderGroup disabled={false} onIonItemReorder={handleReorder}>
           {/*Render Event List*/}
+          
           {eventList.map(event =>
           {
             console.log(event);
-            return <IonItem color="boldgreen" key={event.id}>
-              <IonLabel>
-                <h1>{event.name}</h1>
-                <p>{event.description}</p>
-              </IonLabel>
-              <IonButton onClick={() => {
-                setEventList(eventList.filter(e => e.id !== event.id))
-              }} color="favorite">Delete Event
-              </IonButton>
-            </IonItem>
+            return <IonReorder>
+              <IonItem color="boldgreen" key={event.id}>
+                <IonLabel>
+                  <h1>{event.name}</h1>
+                  <p>{event.description}</p>
+                </IonLabel>
+                <IonButton onClick={() => DeleteEvent(eventList, setEventList, event.id)} color="favorite">Delete Event</IonButton>
+              </IonItem>
+            </IonReorder>
+          
           })}
+          </IonReorderGroup>
+          
 
         </IonList>
         <div className="container">
@@ -142,6 +159,7 @@ const Homepage: React.FC = () =>
             </IonRow>
           </IonGrid>
         </div>
+
       </IonContent>
     </IonPage>
   );
