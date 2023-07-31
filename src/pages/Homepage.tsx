@@ -42,7 +42,19 @@ function DeleteEvent(eventList, setEventList)
     return eventList.slice(1, eventList.length);
   });
 }
-
+function NoUpcomingEvents({hasEvents}) {
+  if (hasEvents) {
+    return null;
+  }
+  else {
+    return <IonItem color="favorite">
+    <IonLabel>
+      <h1>No Upcoming Events</h1>
+      <p>Event list is empty</p>
+    </IonLabel>
+  </IonItem>
+  }
+}
 const Homepage: React.FC = () =>
 {
   const initialList: { id: number, name: string, description: string }[] = [];
@@ -91,7 +103,7 @@ const Homepage: React.FC = () =>
               </IonText>
             </IonLabel>
           </IonListHeader>
-
+          <NoUpcomingEvents hasEvents={eventList.length > 0}/>
           {/*Render Event List*/}
           {eventList.map(event =>
           {
