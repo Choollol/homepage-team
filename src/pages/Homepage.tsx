@@ -123,15 +123,15 @@ const Homepage: React.FC = () =>
           {eventList.map(event =>
           {
             console.log(event);
-            return <IonReorder>
-              <IonItem color="boldgreen" key={event.id}>
+            return <IonItem color="boldgreen" key={event.id}>
+                <IonReorder slot="start" />
                 <IonLabel>
                   <h1>{event.name}</h1>
                   <p>{event.description}</p>
                 </IonLabel>
                 <IonButton onClick={() => DeleteEvent(eventList, setEventList, event.id)} color="favorite">Delete Event</IonButton>
               </IonItem>
-            </IonReorder>
+            
           
           })}
           </IonReorderGroup>
