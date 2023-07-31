@@ -2,6 +2,7 @@ import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGri
 import './Homepage.css';
 import './customcolors.css'
 import React from 'react';
+import { useState } from 'react';
 
 function LinkButton({ url, name, iconURL })
 {
@@ -16,21 +17,37 @@ function LinkButton({ url, name, iconURL })
     </div>
   </IonButton>
 }
-
-function UpcomingEvent({ name, description })
+function AddEvent(eventList, setEventList)
 {
-  return <IonItem color="boldgreen">
-    <IonLabel>
-      <h1>{name}</h1>
-      <IonText color="favorite">
-        <p>{description}</p>
-      </IonText>
-    </IonLabel>
-  </IonItem>
+  setEventList(() =>
+  {
+    let newID;
+    if (eventList.length == 0)
+    {
+      newID = 0;
+    }
+    else
+    {
+      newID = eventList[eventList.length - 1].id + 1;
+    }
+    return [...eventList, {
+      id: newID, name: "Sample Event " + newID, description: "test"
+    }]
+  });
+}
+function DeleteEvent(eventList, setEventList)
+{
+  setEventList(() =>
+  {
+    return eventList.slice(1, eventList.length);
+  });
 }
 
-const Tab1: React.FC = () =>
+const Homepage: React.FC = () =>
 {
+  const initialList: { id: number, name: string, description: string }[] = [];
+  const [eventList, setEventList] = useState(initialList);
+
   return (
     <IonPage>
       <IonHeader>
@@ -62,6 +79,9 @@ const Tab1: React.FC = () =>
           </IonRow>
         </IonGrid>
 
+        <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
+        <IonButton onClick={() => { DeleteEvent(eventList, setEventList) }}>Delete Event</IonButton>
+
         { /* Upcoming Events List */}
         <IonList inset>
           <IonListHeader color="dark">
@@ -72,9 +92,21 @@ const Tab1: React.FC = () =>
             </IonLabel>
           </IonListHeader>
 
-          <UpcomingEvent name="Sample Event 1" description="aaaaaa" />
-          <UpcomingEvent name="Sample Event 2" description="aaaaaa" />
-          <UpcomingEvent name="Sample Event 3" description="aaaaaa" />
+          {/*Render Event List*/}
+          {eventList.map(event =>
+          {
+            console.log(event);
+            return <IonItem color="boldgreen" key={event.id}>
+              <IonLabel>
+                <h1>{event.name}</h1>
+                <p>{event.description}</p>
+              </IonLabel>
+              <IonButton onClick={() => {
+                setEventList(eventList.filter(e => e.id !== event.id))
+              }} color="favorite">Delete Event
+              </IonButton>
+            </IonItem>
+          })}
 
         </IonList>
       </IonContent>
@@ -82,4 +114,4 @@ const Tab1: React.FC = () =>
   );
 };
 
-export default Tab1;
+export default Homepage;
