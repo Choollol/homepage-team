@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover } from '@ionic/react';
 import './Homepage.css';
 import './customcolors.css'
 import React from 'react';
@@ -121,6 +121,27 @@ const Homepage: React.FC = () =>
           })}
 
         </IonList>
+        <div className="container">
+          <IonGrid>
+            <IonRow class="ion-justify-items-center">
+              <IonCol>
+                <IonButton id="help-button" size="large">
+                  <div>
+                  <IonImg src="https://www.kyros.ai/static/media/Astronaut_no_flag.abc01945.svg" style={{ width: "100px", height: "100px" }} ></IonImg>
+                    Help/FAQ
+                  </div>
+                </IonButton>
+                <IonPopover trigger="help-button" side="top" alignment="center">
+                  <IonContent class="ion-padding" color="favorite">
+                    <a href="https://www.kyros.ai/help-support/faq" target="_blank">FAQ's</a><br></br>
+                    <a href="https://www.kyros.ai/help-support/tutorial-videos" target="_blank">Tutorial Videos</a><br></br>
+                    <a href="https://www.kyros.ai/help-support/contact-us" target="_blank">Contact Us</a>
+                  </IonContent>
+                </IonPopover>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </div>
       </IonContent>
     </IonPage>
   );
