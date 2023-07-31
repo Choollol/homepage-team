@@ -46,6 +46,19 @@ function DeleteEvent(eventList, setEventList, eventID)
 {
   setEventList(eventList.filter(e => e.id !== eventID));
 }
+function NoUpcomingEvents({ hasEvents })
+{
+  if (hasEvents)
+  {
+    return;
+  }
+  return <IonItem color="favorite">
+    <IonLabel>
+      <h1>No Upcoming Events</h1>
+      <p>Event list is empty</p>
+    </IonLabel>
+  </IonItem>
+}
 
 const Homepage: React.FC = () =>
 {
@@ -94,6 +107,8 @@ const Homepage: React.FC = () =>
               </IonText>
             </IonLabel>
           </IonListHeader>
+
+          <NoUpcomingEvents hasEvents={eventList.length > 0} />
 
           {/*Render Event List*/}
           {eventList.map(event =>
