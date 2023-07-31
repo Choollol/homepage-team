@@ -35,12 +35,16 @@ function AddEvent(eventList, setEventList)
     }]
   });
 }
-function DeleteEvent(eventList, setEventList)
+function DeleteLatestEvent(eventList, setEventList)
 {
   setEventList(() =>
   {
     return eventList.slice(1, eventList.length);
   });
+}
+function DeleteEvent(eventList, setEventList, eventID)
+{
+  setEventList(eventList.filter(e => e.id !== eventID));
 }
 
 const Homepage: React.FC = () =>
@@ -80,7 +84,7 @@ const Homepage: React.FC = () =>
         </IonGrid>
 
         <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
-        <IonButton onClick={() => { DeleteEvent(eventList, setEventList) }}>Delete Event</IonButton>
+        <IonButton onClick={() => { DeleteLatestEvent(eventList, setEventList) }}>Delete Event</IonButton>
 
         { /* Upcoming Events List */}
         <IonList inset>
@@ -101,10 +105,7 @@ const Homepage: React.FC = () =>
                 <h1>{event.name}</h1>
                 <p>{event.description}</p>
               </IonLabel>
-              <IonButton onClick={() => {
-                setEventList(eventList.filter(e => e.id !== event.id))
-              }} color="favorite">Delete Event
-              </IonButton>
+              <IonButton onClick={() => DeleteEvent(eventList, setEventList, event.id)} color="favorite">Delete Event</IonButton>
             </IonItem>
           })}
 
