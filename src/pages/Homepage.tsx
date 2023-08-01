@@ -31,7 +31,7 @@ function AddEvent(eventList, setEventList)
       newID = eventList[eventList.length - 1].id + 1;
     }
     return [...eventList, {
-      id: newID, name: "Sample Event " + newID, description: "test"
+      id: newID, name: "Event " + newID, description: "test"
     }]
   });
 }
@@ -59,7 +59,8 @@ function NoUpcomingEvents({ hasEvents })
     </IonLabel>
   </IonItem>
 }
-function handleReorder(event: CustomEvent<ItemReorderEventDetail>) {
+function handleReorder(event: CustomEvent<ItemReorderEventDetail>)
+{
   // The `from` and `to` properties contain the index of the item
   // when the drag started and ended, respectively
   console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
@@ -88,7 +89,7 @@ const Homepage: React.FC = () =>
             <IonTitle size="large">Homepage</IonTitle>
           </IonToolbar>
         </IonHeader>
-        
+
         { /* Hyperlink Buttons */}
         <IonGrid color="favorite">
           <IonRow class="ion-justify-items-center">
@@ -119,12 +120,12 @@ const Homepage: React.FC = () =>
 
           <NoUpcomingEvents hasEvents={eventList.length > 0} />
           <IonReorderGroup disabled={false} onIonItemReorder={handleReorder}>
-          {/*Render Event List*/}
-          
-          {eventList.map(event =>
-          {
-            console.log(event);
-            return <IonItem color="boldgreen" key={event.id}>
+            {/*Render Event List*/}
+
+            {eventList.map(event =>
+            {
+              console.log(event);
+              return <IonItem color="boldgreen" key={event.id}>
                 <IonReorder slot="start" />
                 <IonLabel>
                   <h1>{event.name}</h1>
@@ -132,11 +133,11 @@ const Homepage: React.FC = () =>
                 </IonLabel>
                 <IonButton onClick={() => DeleteEvent(eventList, setEventList, event.id)} color="favorite">Delete Event</IonButton>
               </IonItem>
-            
-          
-          })}
+
+
+            })}
           </IonReorderGroup>
-          
+
 
         </IonList>
         <div className="container">
@@ -145,7 +146,7 @@ const Homepage: React.FC = () =>
               <IonCol>
                 <IonButton id="help-button" size="large">
                   <div>
-                  <IonImg src="https://www.kyros.ai/static/media/Astronaut_no_flag.abc01945.svg" style={{ width: "100px", height: "100px" }} ></IonImg>
+                    <IonImg src="https://www.kyros.ai/static/media/Astronaut_no_flag.abc01945.svg" style={{ width: "100px", height: "100px" }} ></IonImg>
                     Help/FAQ
                   </div>
                 </IonButton>
