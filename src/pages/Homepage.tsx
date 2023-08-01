@@ -68,6 +68,7 @@ function handleReorder(event: CustomEvent<ItemReorderEventDetail>) {
   // by the reorder group
   event.detail.complete();
 }
+
 const Homepage: React.FC = () =>
 {
   const initialList: { id: number, name: string, description: string }[] = [];
