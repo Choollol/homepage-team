@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText } from '@ionic/react';
+import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover, IonReorder, IonReorderGroup, ItemReorderEventDetail } from '@ionic/react';
 import './Homepage.css';
 import './customcolors.css'
 import React from 'react';
@@ -59,6 +59,15 @@ function NoUpcomingEvents({ hasEvents })
     </IonLabel>
   </IonItem>
 }
+function handleReorder(event: CustomEvent<ItemReorderEventDetail>) {
+  // The `from` and `to` properties contain the index of the item
+  // when the drag started and ended, respectively
+  console.log('Dragged from index', event.detail.from, 'to', event.detail.to);
+  // Finish the reorder and position the item in the DOM based on
+  // where the gesture ended. This method can also be called directly
+  // by the reorder group
+  event.detail.complete();
+}
 
 const Homepage: React.FC = () =>
 {
@@ -79,7 +88,7 @@ const Homepage: React.FC = () =>
             <IonTitle size="large">Homepage</IonTitle>
           </IonToolbar>
         </IonHeader>
-
+        
         { /* Hyperlink Buttons */}
         <IonGrid color="favorite">
           <IonRow class="ion-justify-items-center">
@@ -109,21 +118,49 @@ const Homepage: React.FC = () =>
           </IonListHeader>
 
           <NoUpcomingEvents hasEvents={eventList.length > 0} />
-
+          <IonReorderGroup disabled={false} onIonItemReorder={handleReorder}>
           {/*Render Event List*/}
+          
           {eventList.map(event =>
           {
             console.log(event);
             return <IonItem color="boldgreen" key={event.id}>
-              <IonLabel>
-                <h1>{event.name}</h1>
-                <p>{event.description}</p>
-              </IonLabel>
-              <IonButton onClick={() => DeleteEvent(eventList, setEventList, event.id)} color="favorite">Delete Event</IonButton>
-            </IonItem>
+                <IonReorder slot="start" />
+                <IonLabel>
+                  <h1>{event.name}</h1>
+                  <p>{event.description}</p>
+                </IonLabel>
+                <IonButton onClick={() => DeleteEvent(eventList, setEventList, event.id)} color="favorite">Delete Event</IonButton>
+              </IonItem>
+            
+          
           })}
+          </IonReorderGroup>
+          
 
         </IonList>
+        <div className="container">
+          <IonGrid>
+            <IonRow class="ion-justify-items-center">
+              <IonCol>
+                <IonButton id="help-button" size="large">
+                  <div>
+                  <IonImg src="https://www.kyros.ai/static/media/Astronaut_no_flag.abc01945.svg" style={{ width: "100px", height: "100px" }} ></IonImg>
+                    Help/FAQ
+                  </div>
+                </IonButton>
+                <IonPopover trigger="help-button" side="top" alignment="center">
+                  <IonContent class="ion-padding" color="favorite">
+                    <a href="https://www.kyros.ai/help-support/faq" target="_blank">FAQ's</a><br></br>
+                    <a href="https://www.kyros.ai/help-support/tutorial-videos" target="_blank">Tutorial Videos</a><br></br>
+                    <a href="https://www.kyros.ai/help-support/contact-us" target="_blank">Contact Us</a>
+                  </IonContent>
+                </IonPopover>
+              </IonCol>
+            </IonRow>
+          </IonGrid>
+        </div>
+
       </IonContent>
     </IonPage>
   );
