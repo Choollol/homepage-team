@@ -48,7 +48,7 @@ function AddEventAlert(eventList, setEventList)
         },
         {
           name: "description",
-          placeholder: "Date"
+          placeholder: "Date/Description"
         }
       ]}
       buttons={[
