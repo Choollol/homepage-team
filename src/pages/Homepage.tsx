@@ -1,4 +1,4 @@
-import { IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover, IonReorder, IonReorderGroup, ItemReorderEventDetail } from '@ionic/react';
+import { useIonAlert, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover, IonReorder, IonReorderGroup, ItemReorderEventDetail, IonIcon, IonInput } from '@ionic/react';
 import './Homepage.css';
 import './customcolors.css'
 import React from 'react';
@@ -31,7 +31,7 @@ function AddEvent(eventList, setEventList)
       newID = eventList[eventList.length - 1].id + 1;
     }
     return [...eventList, {
-      id: newID, name: "Event " + newID, description: "test"
+      id: newID, name: "Event " + newID, description: "Description"
     }]
   });
 }
@@ -104,9 +104,19 @@ const Homepage: React.FC = () =>
               <LinkButton url="https://www.kyros.ai/conversations" name="Chats" iconURL="https://www.kyros.ai/static/media/StudentChats.05bce75c.svg" />
             </IonCol>
           </IonRow>
+          {/* Add Event */}
+          <IonRow class="ion-justify-items-center">
+            <IonCol>
+              <IonInput label="Event Name"></IonInput>
+            </IonCol>
+          </IonRow>
+          <IonRow class="ion-justify-items-center">
+            <IonCol>
+              <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
+            </IonCol>
+          </IonRow>
         </IonGrid>
 
-        <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
 
         { /* Upcoming Events List */}
         <IonList inset>
@@ -120,6 +130,7 @@ const Homepage: React.FC = () =>
 
           <NoUpcomingEvents hasEvents={eventList.length > 0} />
           <IonReorderGroup disabled={false} onIonItemReorder={handleReorder}>
+
             {/*Render Event List*/}
 
             {eventList.map(event =>
@@ -131,10 +142,12 @@ const Homepage: React.FC = () =>
                   <h1>{event.name}</h1>
                   <p>{event.description}</p>
                 </IonLabel>
-                <IonButton onClick={() => DeleteEvent(eventList, setEventList, event.id)} color="favorite">Delete Event</IonButton>
+                <IonButton onClick={() => DeleteEvent(eventList, setEventList, event.id)} color="favorite"
+                  fill="clear">
+                  <IonImg src="https://www.pngmart.com/files/17/Waste-Garbage-Can-Vector-PNG-Clipart.png"
+                    style={{ width: "30px", height: "30px" }}></IonImg>
+                </IonButton>
               </IonItem>
-
-
             })}
           </IonReorderGroup>
 
