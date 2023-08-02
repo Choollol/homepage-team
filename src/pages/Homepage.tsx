@@ -35,35 +35,39 @@ function AddEvent(eventList, setEventList, eventName: string, eventDesc: string)
     }]
   });
 }
-function AddEventAlert(eventList, setEventList)
+/*function AddEventAlert({ eventList, setEventList })
 {
-  return (
-    <IonAlert
-      header="Enter Event Information"
-      trigger="add-event-alert"
-      inputs={[
+  return <IonAlert
+    header="Enter Event Information"
+    trigger="add-event-alert"
+    inputs={
+      [
         {
           name: "name",
-          placeholder: "Event name"
+          placeholder: "Event name",
+          value: ""
         },
         {
           name: "description",
-          placeholder: "Date/Description"
+          placeholder: "Date/Description",
+          value: ""
         }
       ]}
-      buttons={[
+    buttons={
+      [
         {
           text: "Enter",
           handler: (alertData) =>
           {
-            AddEvent(eventList, setEventList, alertData.name, alertData.description);
-          }
+            if (alertData.name.length > 0 && alertData.description.length > 0)
+            {
+              AddEvent(eventList, setEventList, alertData.name, alertData.description);
+            }
+          },
         }
       ]}
-    >
-
-    </IonAlert>
-  );
+  >
+  </IonAlert >
 }
 function DeleteLatestEvent(eventList, setEventList)
 {
@@ -71,7 +75,7 @@ function DeleteLatestEvent(eventList, setEventList)
   {
     return eventList.slice(1, eventList.length);
   });
-}
+}*/
 function DeleteEvent(eventList, setEventList, eventID)
 {
   setEventList(eventList.filter(e => e.id !== eventID));
@@ -105,6 +109,8 @@ const Homepage: React.FC = () =>
   const initialList: { id: number, name: string, description: string }[] = [];
   const [eventList, setEventList] = useState(initialList);
 
+  const [addEventAlert] = useIonAlert();
+
   return (
     <IonPage>
       <IonHeader>
@@ -134,15 +140,46 @@ const Homepage: React.FC = () =>
               <LinkButton url="https://www.kyros.ai/conversations" name="Chats" iconURL="https://www.kyros.ai/static/media/StudentChats.05bce75c.svg" />
             </IonCol>
           </IonRow>
-          {/* Add Event */}
+          {/* Add Event Button */}
           <IonRow class="ion-justify-items-center">
             <IonCol>
-              <IonButton id="add-event-alert">Add Event</IonButton>
+              <IonButton
+                id="add-event-alert"
+                onClick={() =>
+                  addEventAlert({
+                    header: 'Alert',
+                    inputs:
+                      [
+                        {
+                          name: "name",
+                          placeholder: "Event name",
+                          value: ""
+                        },
+                        {
+                          name: "description",
+                          placeholder: "Date/Description",
+                          value: ""
+                        }
+                      ],
+                    buttons:
+                      [
+                        {
+                          text: "Enter",
+                          handler: (alertData) =>
+                          {
+                            if (alertData.name.length > 0 && alertData.description.length > 0)
+                            {
+                              AddEvent(eventList, setEventList, alertData.name, alertData.description);
+                            }
+                          },
+                        }
+                      ]
+                  })
+                }
+              >Add Event</IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>
-
-        {AddEventAlert(eventList, setEventList)}
 
         { /* Upcoming Events List */}
         <IonList inset>
