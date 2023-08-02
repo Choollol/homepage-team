@@ -1,4 +1,5 @@
 import React from 'react';
+import { Component, AfterViewInit } from '@angular/core';
 
 import { Redirect, Route } from 'react-router-dom';
 import
@@ -40,6 +41,17 @@ import './theme/variables.css';
 
 setupIonicReact();
 
+// @Component({
+//   selector: 'Planner',
+//   templateUrl: 'planner.html',
+// })
+export class plannerButton implements AfterViewInit {
+  ngAfterViewInit() {
+    const script = document.createElement('script');
+    script.src = 'src/planner-files/planner.js';
+    document.body.appendChild(script);
+  }
+}
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
@@ -67,9 +79,9 @@ const App: React.FC = () => (
             <IonIcon aria-hidden="true" icon={create} />
             <IonLabel>Journal</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Planner" href="/Planner">
+          <IonTabButton tab="Planner" href="/Planner" onClick={() => plannerButton}>
             <IonIcon aria-hidden="true" icon={calendar} />
-            <IonLabel>Planner</IonLabel>
+            <IonLabel>Planner</IonLabel>  
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
