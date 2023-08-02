@@ -106,7 +106,7 @@ const Homepage: React.FC = () =>
                 id="add-event-alert"
                 onClick={() =>
                   addEventAlert({
-                    header: 'Alert',
+                    header: "Event Information",
                     inputs:
                       [
                         {
