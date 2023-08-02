@@ -1,0 +1,7 @@
+ion-content.custom-background {
+    --ion-background-color: #324198; /* Replace with your desired background color */
+  }
+  /* Tab2.css */
+.white-text {
+    color: white;
+  }

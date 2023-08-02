@@ -1,8 +1,6 @@
-import React from 'react';
-
 import { Redirect, Route } from 'react-router-dom';
-import
-{
+
+import {
   IonApp,
   IonIcon,
   IonLabel,
@@ -13,11 +11,10 @@ import
   setupIonicReact
 } from '@ionic/react';
 import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle, home, create, calendar } from 'ionicons/icons';
-import Homepage from './pages/Homepage';
-import Journal from './pages/Journal';
-import Planner from './pages/Planner';
-import './pages/customcolors.css'
+import { images, home, book } from 'ionicons/icons';
+//import Tab1 from './pages/Tab1';
+import Tab2 from './pages/journal';
+import Tab3 from './pages/Tab3';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -34,9 +31,10 @@ import '@ionic/react/css/text-alignment.css';
 import '@ionic/react/css/text-transformation.css';
 import '@ionic/react/css/flex-utils.css';
 import '@ionic/react/css/display.css';
-import './theme/variables.css';
+
 /* Theme variables */
 import './theme/variables.css';
+import Tab1 from './pages/Tab1';
 
 setupIonicReact();
 
@@ -45,31 +43,35 @@ const App: React.FC = () => (
     <IonReactRouter>
       <IonTabs>
         <IonRouterOutlet>
-          <Route exact path="/Homepage">
-            <Homepage />
+          <Route exact path="/tab1">
+            <Tab1/>
           </Route>
-          <Route exact path="/Journal">
-            <Journal />
+          <Route exact path="/tab2">
+            <Tab2 />
           </Route>
-          <Route path="/Planner">
-            <Planner />
+          <Route path="/tab3">
+            <Tab3 />
           </Route>
           <Route exact path="/">
-            <Redirect to="/Homepage" />
+            <Redirect to="/tab1" />
           </Route>
         </IonRouterOutlet>
-        <IonTabBar slot="bottom" color="favorite">
-          <IonTabButton tab="Homepage" href="/Homepage">
+        <IonTabBar slot="bottom">
+          <IonTabButton tab="tab1" href="/tab1">
             <IonIcon aria-hidden="true" icon={home} />
-            <IonLabel>Homepage</IonLabel>
+            <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Journal" href="/Journal">
-            <IonIcon aria-hidden="true" icon={create} />
+          <IonTabButton tab="tab2" href="/tab2">
+            <IonIcon aria-hidden="true" icon={book} />
             <IonLabel>Journal</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Planner" href="/Planner">
-            <IonIcon aria-hidden="true" icon={calendar} />
-            <IonLabel>Planner</IonLabel>
+          <IonTabButton tab="tab3" href="/tab3">
+            <IonIcon aria-hidden="true" icon={images} />
+            <IonLabel>Photos</IonLabel>
+            <IonTabButton tab="tab2" href="/tab2">
+ 
+ 
+</IonTabButton>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
