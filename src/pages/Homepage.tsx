@@ -56,7 +56,7 @@ function AddEventAlert(eventList, setEventList)
           text: "Enter",
           handler: (alertData) =>
           {
-            AddEvent(eventList, setEventList, alertData.name, alertData.description);
+            if ((alertData.name.length > 0) && (alertData.description.length > 0)) {AddEvent(eventList, setEventList, alertData.name, alertData.description)};
           }
         }
       ]}
