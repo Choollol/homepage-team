@@ -59,11 +59,16 @@ function AddEvent(eventList, setEventList, eventName: string, eventDesc: string)
           text: "Enter",
           handler: (alertData) =>
           {
+<<<<<<< HEAD
             if (alertData.name.length > 0 && alertData.description.length > 0)
             {
               AddEvent(eventList, setEventList, alertData.name, alertData.description);
             }
           },
+=======
+            if ((alertData.name.length > 0) && (alertData.description.length > 0)) {AddEvent(eventList, setEventList, alertData.name, alertData.description)};
+          }
+>>>>>>> 08a4adb54266e24d50b8e59712d429bab41d284d
         }
       ]}
   >
