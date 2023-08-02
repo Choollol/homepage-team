@@ -107,11 +107,6 @@ const Homepage: React.FC = () =>
           {/* Add Event */}
           <IonRow class="ion-justify-items-center">
             <IonCol>
-              <IonInput label="Event Name"></IonInput>
-            </IonCol>
-          </IonRow>
-          <IonRow class="ion-justify-items-center">
-            <IonCol>
               <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
             </IonCol>
           </IonRow>
