@@ -35,52 +35,6 @@ function AddEvent(eventList, setEventList, eventName: string, eventDesc: string)
     }]
   });
 }
-/*function AddEventAlert({ eventList, setEventList })
-{
-  return <IonAlert
-    header="Enter Event Information"
-    trigger="add-event-alert"
-    inputs={
-      [
-        {
-          name: "name",
-          placeholder: "Event name",
-          value: ""
-        },
-        {
-          name: "description",
-          placeholder: "Date/Description",
-          value: ""
-        }
-      ]}
-    buttons={
-      [
-        {
-          text: "Enter",
-          handler: (alertData) =>
-          {
-<<<<<<< HEAD
-            if (alertData.name.length > 0 && alertData.description.length > 0)
-            {
-              AddEvent(eventList, setEventList, alertData.name, alertData.description);
-            }
-          },
-=======
-            if ((alertData.name.length > 0) && (alertData.description.length > 0)) {AddEvent(eventList, setEventList, alertData.name, alertData.description)};
-          }
->>>>>>> 08a4adb54266e24d50b8e59712d429bab41d284d
-        }
-      ]}
-  >
-  </IonAlert >
-}
-function DeleteLatestEvent(eventList, setEventList)
-{
-  setEventList(() =>
-  {
-    return eventList.slice(1, eventList.length);
-  });
-}*/
 function DeleteEvent(eventList, setEventList, eventID)
 {
   setEventList(eventList.filter(e => e.id !== eventID));
