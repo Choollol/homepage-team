@@ -18,6 +18,7 @@ import { ellipse, square, triangle, home, create, calendar } from 'ionicons/icon
 import Homepage from './pages/Homepage';
 import Journal from './pages/Journal';
 import Planner from './pages/Planner';
+import PlannerContent from './plannerComponent';
 import './pages/customcolors.css'
 
 /* Core CSS required for Ionic components to work properly */
@@ -45,13 +46,16 @@ setupIonicReact();
 //   selector: 'Planner',
 //   templateUrl: 'planner.html',
 // })
-export class plannerButton implements AfterViewInit {
-  ngAfterViewInit() {
-    const script = document.createElement('script');
-    script.src = 'src/planner-files/planner.js';
-    document.body.appendChild(script);
-  }
-}
+// export class plannerButton implements AfterViewInit {
+//   ngAfterViewInit() {
+//     console.log("hi");
+//     const script = document.createElement('script');
+//     script.src = 'src/planner-files/planner.js';
+//     document.body.appendChild(script);
+//   }
+// }
+
+
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
@@ -63,9 +67,7 @@ const App: React.FC = () => (
           <Route exact path="/Journal">
             <Journal />
           </Route>
-          <Route path="/Planner">
-            <Planner />
-          </Route>
+          <Route path="/plannerC" component={PlannerContent} exact />
           <Route exact path="/">
             <Redirect to="/Homepage" />
           </Route>
@@ -79,7 +81,7 @@ const App: React.FC = () => (
             <IonIcon aria-hidden="true" icon={create} />
             <IonLabel>Journal</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="Planner" href="/Planner" onClick={() => plannerButton}>
+          <IonTabButton tab="plannerC" href="/plannerC">
             <IonIcon aria-hidden="true" icon={calendar} />
             <IonLabel>Planner</IonLabel>  
           </IonTabButton>

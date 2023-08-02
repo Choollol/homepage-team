@@ -24,6 +24,7 @@
     "@types/react-router-dom": "^5.3.3",
     "angular": "^1.8.3",
     "angular-core": "^0.0.5",
+    "axios": "^1.4.0",
     "ionicons": "^7.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
