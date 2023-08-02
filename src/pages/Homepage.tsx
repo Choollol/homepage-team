@@ -1,4 +1,4 @@
-import { useIonAlert, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover, IonReorder, IonReorderGroup, ItemReorderEventDetail, IonIcon, IonInput } from '@ionic/react';
+import { useIonAlert, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover, IonReorder, IonReorderGroup, ItemReorderEventDetail, IonIcon, IonInput, IonAlert } from '@ionic/react';
 import './Homepage.css';
 import './customcolors.css'
 import React from 'react';
@@ -17,7 +17,7 @@ function LinkButton({ url, name, iconURL })
     </div>
   </IonButton>
 }
-function AddEvent(eventList, setEventList)
+function AddEvent(eventList, setEventList, eventName: string, eventDesc: string)
 {
   setEventList(() =>
   {
@@ -31,9 +31,39 @@ function AddEvent(eventList, setEventList)
       newID = eventList[eventList.length - 1].id + 1;
     }
     return [...eventList, {
-      id: newID, name: "Event " + newID, description: "Description"
+      id: newID, name: eventName, description: eventDesc
     }]
   });
+}
+function AddEventAlert(eventList, setEventList)
+{
+  return (
+    <IonAlert
+      header="Enter Event Information"
+      trigger="add-event-alert"
+      inputs={[
+        {
+          name: "name",
+          placeholder: "Event name"
+        },
+        {
+          name: "description",
+          placeholder: "Date"
+        }
+      ]}
+      buttons={[
+        {
+          text: "Enter",
+          handler: (alertData) =>
+          {
+            AddEvent(eventList, setEventList, alertData.name, alertData.description);
+          }
+        }
+      ]}
+    >
+
+    </IonAlert>
+  );
 }
 function DeleteLatestEvent(eventList, setEventList)
 {
@@ -107,11 +137,12 @@ const Homepage: React.FC = () =>
           {/* Add Event */}
           <IonRow class="ion-justify-items-center">
             <IonCol>
-              <IonButton onClick={() => { AddEvent(eventList, setEventList) }}>Add Event</IonButton>
+              <IonButton id="add-event-alert">Add Event</IonButton>
             </IonCol>
           </IonRow>
         </IonGrid>
 
+        {AddEventAlert(eventList, setEventList)}
 
         { /* Upcoming Events List */}
         <IonList inset>
@@ -130,7 +161,6 @@ const Homepage: React.FC = () =>
 
             {eventList.map(event =>
             {
-              console.log(event);
               return <IonItem color="boldgreen" key={event.id}>
                 <IonReorder slot="start" />
                 <IonLabel>
