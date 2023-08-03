@@ -17,7 +17,7 @@
     "jsx": "react-jsx",
     "baseUrl": "src"
   },
-  "include": ["src"],
+  "include": ["src", "public/assets/planner.js"],
   "baseUrl": "src",
   "references": [{ "path": "./tsconfig.node.json" }]
 }
