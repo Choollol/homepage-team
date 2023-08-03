@@ -1,4 +1,4 @@
-import { useIonAlert, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover, IonReorder, IonReorderGroup, ItemReorderEventDetail, IonIcon, IonInput, IonAlert } from '@ionic/react';
+import { useIonAlert, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, IonButton, IonGrid, IonRow, IonCol, IonItem, IonImg, IonList, IonListHeader, IonLabel, IonText, IonPopover, IonReorder, IonReorderGroup, ItemReorderEventDetail, IonIcon, IonInput, IonAlert, IonToggle } from '@ionic/react';
 import './Homepage.css';
 import './customcolors.css'
 import React from 'react';
@@ -67,17 +67,23 @@ const Homepage: React.FC = () =>
 {
   const initialList: { id: number, name: string, description: string }[] = [];
   const [eventList, setEventList] = useState(initialList);
+  const [isDarkMode, setDarkMode] = useState(false);
 
   const [addEventAlert] = useIonAlert();
+
+  const darkModeToggle = () => {
+    setDarkMode(!isDarkMode);   // toggle the state
+  }
 
   return (
     <IonPage>
       <IonHeader>
         <IonToolbar color="favorite">
           <IonTitle>Homepage</IonTitle>
+          <IonToggle slot="end" color="success ion-margin-end" checked={isDarkMode} onIonChange={()=>darkModeToggle()}>Dark Mode</IonToggle>
         </IonToolbar>
       </IonHeader>
-      <IonContent color="dark" fullscreen>
+      <IonContent color={isDarkMode ? "light":"dark"} fullscreen>
 
         <IonHeader collapse="condense">
           <IonToolbar>
