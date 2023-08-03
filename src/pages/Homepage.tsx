@@ -148,9 +148,9 @@ const Homepage: React.FC = () =>
 
         { /* Upcoming Events List */}
         <IonList inset>
-          <IonListHeader color="dark">
+          <IonListHeader color={isDarkMode ? "favorite":"dark"}>
             <IonLabel>
-              <IonText color="favorite">
+              <IonText>
                 <h1>Upcoming</h1>
               </IonText>
             </IonLabel>
@@ -163,7 +163,7 @@ const Homepage: React.FC = () =>
 
             {eventList.map(event =>
             {
-              return <IonItem color="boldgreen" key={event.id}>
+              return <IonItem color={isDarkMode ? "favorite":"boldgreen"} key={event.id}>
                 <IonReorder slot="start" />
                 <IonLabel>
                   <h1>{event.name}</h1>
